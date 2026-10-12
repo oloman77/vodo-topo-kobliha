@@ -7,10 +7,10 @@ Aktualizováno: 12. 10. 2026
 - [ ] **Rozsah služeb:** ověřit dílčí práce versus komplexní dodávky, pozáruční servis a zda firma servisuje i instalace jiných dodavatelů.
 - [ ] **Velikost zakázek:** potvrdit případnou minimální hodnotu a ochotu přijímat drobné opravy.
 - [ ] Po upřesnění cílových zákazníků zkontrolovat veřejný text v sekci „O nás“; **aktuální výčet zákazníků na webu je orientační a před ostrým spuštěním vyžaduje potvrzení.**
-- [ ] Nahradit prozatímní text „Rozsah realizace bude doplněn“ u jednotlivých referencí konkrétními, potvrzenými údaji.
+- [x] Nahradit prozatímní popisky rozsahu u všech šesti projektů dodanými údaji. Doplněny rozvody, kompletace a počty bytů; u TopTower výslovně plánované práce (255 bytů).
 
 ## K potvrzení se zadavatelem – před ostrým spuštěním
-- [ ] Získat definitivní **popis skutečně provedených prací** pro každou referenci (Alfa Residence, SO-HO Rezidence, Dubičný potok, LIHOVAR STŘED a JIH, TopTower – rozlišit plánovaný rozsah). Do té doby na webu zůstávají zástupné popisky; před veřejným představením je odstranit.
+- [x] Doplnit **rozsah prací a počty bytů** pro Alfa Residence, SO-HO Rezidence, Dubičný potok, LIHOVAR STŘED a JIH i TopTower podle dodaných podkladů (u TopTower označeno jako plánovaná realizace).
 - [ ] Potvrdit **pravdivost názvů, stavu projektů a uvedených finančních objemů**, případně zda smíme každou referenci veřejně použít.
 - [ ] Doložit **oprávnění k použití externích projektových fotografií**, nebo dodat vlastní fotografie realizovaných rozvodů a technologií.
 - [ ] Potvrdit **cílové skupiny, minimální rozsah zakázek, typy servisu** a zda firma přijímá i drobné opravy.
