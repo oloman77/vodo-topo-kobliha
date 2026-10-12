@@ -2,6 +2,13 @@
 
 Aktualizováno: 12. 10. 2026
 
+## Obsah k potvrzení se zadavatelem
+- [ ] **Cíloví zákazníci:** potvrdit, pro koho firma zakázky realizuje (stavební společnosti, developeři, investoři, SVJ a správci budov, domácnosti).
+- [ ] **Rozsah služeb:** ověřit dílčí práce versus komplexní dodávky, pozáruční servis a zda firma servisuje i instalace jiných dodavatelů.
+- [ ] **Velikost zakázek:** potvrdit případnou minimální hodnotu a ochotu přijímat drobné opravy.
+- [ ] Po upřesnění cílových zákazníků zkontrolovat veřejný text v sekci „O nás“; do té doby na webu zůstat u obecnějšího popisu.
+- [ ] Nahradit prozatímní text „Rozsah realizace bude doplněn“ u jednotlivých referencí konkrétními, potvrzenými údaji.
+
 ## Před spuštěním webu
 - [ ] Doplnit a ověřit finální kontaktní údaje firmy (bez vymyšlených údajů).
 - [ ] Dokončit revizi textů, fotografií, referencí a zobrazení na mobilu i desktopu.
