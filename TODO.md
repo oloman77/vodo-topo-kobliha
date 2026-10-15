@@ -14,7 +14,7 @@ Aktualizováno: 15. 10. 2026
 
 ## Technické kontroly – zbývá dokončit
 
-- [ ] **Cloudflare:** ověřit úspěšné nasazení poslední verze větve `main` (zejména odstraněnou cenu TopTower) na živé doméně.
+- [x] **TopTower na produkci:** zadavatel 15. 10. 2026 ověřil, že na ostrém webu už není uvedena cena budoucí zakázky. (Kontrola přesné verze/commit ID Cloudflare nebyla nezávisle provedena.)
 - [ ] **Doména:** znovu ověřit dostupnost `https://vodotopokobliha.cz/`, platnost HTTPS a DNS po dokončeném nastavení; původně bylo fungování potvrzeno v konverzaci.
 - [ ] **Přesměrování:** ověřit trvalé 301/308 přesměrování `www.vodotopokobliha.cz` → `https://vodotopokobliha.cz/`.
 - [ ] **Funkčnost:** na finální doméně ověřit fotografie, `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt`, `/sitemap.xml`, telefonní a e-mailové odkazy.
