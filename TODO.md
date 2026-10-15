@@ -20,7 +20,7 @@ Aktualizováno: 15. 10. 2026
 - [x] Kontrola JSON-LD organizace, canonical, robots meta, sitemap, Google a Seznam ověřovacího kódu.
 - [x] Všech šest referenčních fotografií má atributy alt a rozměry; lokální soubory pro favicon, sociální náhled a úvodní grafiku jsou přítomné v repozitáři.
 - [x] Přehled responzivních pravidel a zachování mobilního menu v kódu; reálné vykreslení v prohlížečích zůstává k otestování.
-- [ ] **Pozor na externí fotografie:** všech šest obrázků referencí se načítá z cizích serverů. Ověřit v produkci, že se všechny načítají; případné hostování lokálně řešit až po přípravě binárních souborů a potvrzení oprávnění.
+- [ ] **Optimalizace a stabilita externích fotografií (PageSpeed 16. 10.):** všech šest referenčních obrázků se načítá z cizích serverů. Největší dopad má Dubičný potok na `i.ci.cz` (~738 KiB, Lighthouse odhaduje úsporu ~685 KiB); Wikimedia Lihovar STŘED ~232 KiB, miniatura JIH ~69 KiB, TopTower ~52 KiB; Alfa Residence ~85 KiB. Celkový odhad `Improve image delivery` ~1 009 KiB. Pro 3 soubory Wikimedia (~360 KiB) Lighthouse hlásí `Cache TTL: None`, což na cizím hostingu sami neopravíme. Doporučené řešení: po ověření oprávnění a se zachováním atribuce převést na vhodné rozměry WebP/AVIF, hostovat lokálně v `assets/`, použít responsive obrázky a pro versionované soubory odpovídající cache. Vzhled a ořez zachovat, před a po nasazení ověřit všech šest obrázků. **Zatím neimplementováno.**
 
 ## Technické kontroly – zbývá dokončit
 
