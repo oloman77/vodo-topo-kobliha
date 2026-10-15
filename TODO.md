@@ -25,27 +25,31 @@ Aktualizováno: 16. 10. 2026
 ## Technické kontroly – zbývá dokončit
 
 - [x] **TopTower na produkci:** zadavatel 15. 10. 2026 ověřil, že na ostrém webu už není uvedena cena budoucí zakázky. (Kontrola přesné verze/commit ID Cloudflare nebyla nezávisle provedena.)
-- [ ] **Doména a DNSSEC:** po dokončení automatické aktivace DNSSEC v CZ.NIC znovu ověřit veřejné DNS, dostupnost `https://vodotopokobliha.cz/`, platnost HTTPS a doručování pošty. DNSSEC byl 15. 10. ve stavu Pending; na 16. 10. je již naplánována kontrola. Nezasahovat preventivně do DNS.
-- [ ] **Přesměrování:** ověřit trvalé 301/308 přesměrování `www.vodotopokobliha.cz` → `https://vodotopokobliha.cz/`.
-- [ ] **Lokální obrázky v produkci:** po Cloudflare Pages deploymentu ověřit, že se všech šest fotografií a pozadí patičky načítají jako `/assets/optimized/*.webp` bez 404, že zůstaly ořezy a nedeformuje se rozložení mobil/tablet/desktop. Na GitHubu již vše ověřeno.
-- [ ] **Funkčnost v produkci:** ověřit fotografie, `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt`, `/sitemap.xml`, telefonní a e-mailové odkazy. **Kontrola repozitáře 16. 10.:** místní obrázky existují, odkazy na sekce vedou na existující ID, SEO metadata a jeden H1 jsou v kódu správně. Veřejné HTTP odpovědi se zatím z kontrolního prostředí nepodařilo změřit.
+- [x] **Dostupnost ostré domény a HTTPS:** 16. 10. 2026 externí GitHub Actions ověřily HTTP 200 přes platné HTTPS, Cloudflare NS, A/AAAA, MX pro Seznam Email Profi a SPF v TXT. Test dokončen bez změn DNS.
+- [ ] **DNSSEC:** veřejně viditelné DNSKEY i RRSIG, ale při kontrole přes resolver 1.1.1.1 zatím **nebyl vidět DS záznam**. Dokončení aktivace DNSSEC u CZ.NIC potvrdit později; do DNS nezasahovat. Ranní automatizovaná kontrola už byla naplánovaná. Doručování e-mailu kontrolovat samostatně.
+- [x] **Přesměrování:** 16. 10. GitHub Actions ověřily trvalé HTTP **301** u `http://vodotopokobliha.cz/`, `http://www.vodotopokobliha.cz/` a `https://www.vodotopokobliha.cz/` → hlavní `https://vodotopokobliha.cz/`.
+- [x] **Nasazení lokálních obrázků:** 16. 10. ostrá stránka vrátila HTML s `assets/optimized/`; namátkově ověřené Dubičný potok, SO-HO, Lihovar JIH, TopTower a patička: všechny HTTP 200 `image/webp` + `Cache-Control: max-age=31536000, immutable`.
+- [ ] **Vizuální kontrola všech obrázků:** zkontrolovat také Alfa Residence a Lihovar STŘED, ořezy a vzhled šesti karet i patičky na desktopu a mobilu. Náhodný HTTP test neověřuje vizuální vzhled.
+- [x] **Produkční soubory:** 16. 10. externě ověřeno HTTP 200 pro `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt`, `/sitemap.xml`; lokální interní a `tel:`/`mailto:` odkazy ověřeny v HTML. 
+- [ ] **Kontaktní odkazy v praxi:** kliknout na `tel:` a `mailto:` v mobilu/prohlížeči a ověřit, že otevřou správnou akci (bez odesílání testovací zprávy).
 - [ ] **Responzivita:** otestovat navigaci, kotvy, karty a kontakty na mobilu (včetně 320–390 px), tabletu a desktopu; Safari na iPhonu, Firefox, Edge a Chrome.
 - [x] **PageSpeed Insights – mobil, 16. 10. 2026:** Lighthouse Performance **85**, Accessibility **95**, Best Practices **96**, SEO **100**; FCP ~**2,6 s**, LCP **3,9 s**, Speed Index **2,6 s**, TBT **0 ms**, CLS **0,002**. Jde o laboratorní měření (bez dat skutečných uživatelů).
 - [x] **Cloudflare Fonts:** zapnutí potvrzeno uživatelem 16. 10. 2026. Následný mobilní Lighthouse audit ukazuje doručování dvou souborů fontů přímo z `vodotopokobliha.cz` (~163 ms / 30,90 KiB a ~138 ms / 27,80 KiB), bez dalšího externího originu k preconnect; nejdelší kritická síťová cesta 163 ms. Lokální doručování potvrzeno, dopad na celkové Performance/LCP ověřit souhrnným měřením.
 - [x] **LCP – priorita úvodního obrázku:** 16. 10. 2026 přidáno `rel="preload"` a `fetchpriority="high"` pro `/assets/hero-pipes.svg` v `<head>` podle Lighthouse. Vizuální vzhled a styly beze změny; efekt ověřit novým mobilním měřením (předchozí screenshot `LCP request discovery` upozornil na chybějící vysokou prioritu).
 - [x] **Render-blocking – následné měření 16. 10.:** odhad potenciální úspory klesl z 1 760 ms na **120 ms**. Externí Google Fonts zmizely; zůstává pouze Cloudflare `email-decode.min.js` (~150 ms, 1,2 KiB). Kvůli malé úspoře zachovat ochranu e-mailu. Kritická síťová cesta v novém měření 204 ms (předtím 163 ms); běžná odchylka laboratorního testu, nikoli prokázaná regrese.
 - [x] **Souhrnný PageSpeed – mobil po optimalizacích, 16. 10.:** Performance **97**, Accessibility **100**, Best Practices **100**, SEO **100**; FCP **0,8 s**, LCP **2,6 s**, Speed Index **0,8 s**, TBT **0 ms**, CLS **0,051**. Proti původnímu měření Performance 85 a LCP 3,9 s významné zlepšení. Mobilní laboratorní skóre přijato jako dostatečné; další agresivní optimalizace bez důvodu nedělat.
-- [ ] **Výkon / obrázky – zbývající ověření:** ověřit nový detail `Improve image delivery` / `Use efficient cache lifetimes` a desktopový PageSpeed, plus vizuální kontrolu všech obrázků na mobilu/tabletu/desktopu. LCP 2,6 s těsně nad doporučenými 2,5 s; další optimalizace pouze podle prokázaného problému.
+- [x] **PageSpeed po optimalizaci:** mobil Performance **97**, přístupnost/Best Practices/SEO **100**; desktop všechna čtyři skóre **100**, dle uživatele. Cache verzovaných lokálních obrázků nezávisle potvrzena v produkci. Nepokračovat v honbě za laboratorními body; případný rozdíl `Improve image delivery` kontrolovat jen při skutečně pomalém či chybném načítání. Vizuální kontrola fotografií je uvedena samostatně.
 - [x] **Přístupnost – předběžná oprava kontrastu:** 16. 10. 2026 ztmavena pouze barva malých modrých popisků sekcí `#126fc1` → `#1169b7` na světlých pozadích. V CSS byly vypočteny původní poměry 4,34–4,45 : 1 na různých částech modrého pozadí; nové nejméně 4,73 : 1, tedy přes WCAG AA pro běžný text. Žádné změny layoutu.
 - [x] **Přístupnost – kontrolní mobilní Lighthouse 16. 10.:** skóre Accessibility vzrostlo z 95 na **100** po úpravě kontrastu; nebylo potřeba dalšího zásahu.
 - [x] **PageSpeed – desktop (16. 10. 2026):** podle výsledků sdělených uživatelem skóre **Performance 100, Accessibility 100, Best Practices 100, SEO 100**. Jednotlivé metriky desktopu nebyly dodány, ale souhrnné hodnocení je potvrzené.
-- [ ] **Bezpečnost a sdílení:** zkontrolovat na živé doméně HTTP hlavičky z `_headers` a náhledy při sdílení přes WhatsApp/Facebook/LinkedIn.
+- [x] **Bezpečnostní hlavičky:** produkční HTTP odpověď 16. 10. obsahuje `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`. 
+- [ ] **Náhledy sdílení:** zkontrolovat náhled URL při sdílení do WhatsApp/Facebook/LinkedIn; obrázek `/assets/social-preview.png` je veřejně dostupný přes HTTPS (HTTP 200).
 
 ## SEO a propagace
 
 - [x] SEO title, description, H1, canonical URL, strukturovaná data a působnost po celé ČR.
 - [x] Připraveny soubory `robots.txt`, `sitemap.xml`, favicon a sociální náhled.
-- [ ] Ověřit na živé doméně `robots.txt`, `sitemap.xml` a správnost canonical URL.
+- [x] **SEO v produkci:** 16. 10. `robots.txt` a `sitemap.xml` vracejí HTTP 200; produkční HTML obsahuje správnou canonical adresu `https://vodotopokobliha.cz/`.
 - [x] Přidat a ověřit doménovou službu `vodotopokobliha.cz` v **Google Search Console** – potvrzeno uživatelem 15. 10. 2026 (`Ownership verified`).
 - [x] Odeslat sitemap `https://vodotopokobliha.cz/sitemap.xml` v Google Search Console – stav **Success**, potvrzeno uživatelem 15. 10. 2026. Indexaci URL kontrolovat zvlášť.
 - [x] **Požádat o indexaci:** 15. 10. 2026 Google Search Console potvrdila `Indexing requested` – URL zařazena do prioritní fronty pro procházení (potvrzeno uživatelem). Živý test URL nebyl zvlášť potvrzen.
