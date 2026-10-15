@@ -37,7 +37,7 @@ Aktualizováno: 16. 10. 2026
 - [x] **Automatická responzivita v Chromiu:** 16. 10. otestováno šest velikostí 320, 375, 390, 768, 1024 a 1440 px; **0 chyb**. Bez vodorovného přetékání; navigace na jednom řádku, mobilní/tabletové tři ikony v jednom řádku, žádné neexistující kotvy; všech šest fotek načtených. Výstup `https://github.com/oloman77/vodo-topo-kobliha/actions/runs/38821797038`.
 - [x] **Safari na iPhonu:** ruční vizuální kontrola vzhledu, fotografií, navigace a tří ikon služeb potvrzena uživatelem 16. 10. (`iPhone OK`).
 - [x] **Firefox na desktopu:** uživatel potvrdil `Desktop OK` po výzvě ke kontrole webu ve Firefoxu (16. 10. 2026).
-- [ ] **Edge na desktopu:** volitelná rychlá kontrola kompatibility (Safari na iPhonu, Chromium na šesti šířkách a Firefox na desktopu již prošly).
+- [x] **Microsoft Edge na desktopu:** 16. 10. 2026 nezávislý GitHub Actions test ostrého webu v Microsoft Edge na šířkách 1024 a 1440 px – 0 chyb; bez přetékání, navigace v jednom řádku, všechny lokální fotografie načteny, interní kotvy platné. Workflow: https://github.com/oloman77/vodo-topo-kobliha/actions/runs/38822742587.
 - [x] **PageSpeed Insights – mobil, 16. 10. 2026:** Lighthouse Performance **85**, Accessibility **95**, Best Practices **96**, SEO **100**; FCP ~**2,6 s**, LCP **3,9 s**, Speed Index **2,6 s**, TBT **0 ms**, CLS **0,002**. Jde o laboratorní měření (bez dat skutečných uživatelů).
 - [x] **Cloudflare Fonts:** zapnutí potvrzeno uživatelem 16. 10. 2026. Následný mobilní Lighthouse audit ukazuje doručování dvou souborů fontů přímo z `vodotopokobliha.cz` (~163 ms / 30,90 KiB a ~138 ms / 27,80 KiB), bez dalšího externího originu k preconnect; nejdelší kritická síťová cesta 163 ms. Lokální doručování potvrzeno, dopad na celkové Performance/LCP ověřit souhrnným měřením.
 - [x] **LCP – priorita úvodního obrázku:** 16. 10. 2026 přidáno `rel="preload"` a `fetchpriority="high"` pro `/assets/hero-pipes.svg` v `<head>` podle Lighthouse. Vizuální vzhled a styly beze změny; efekt ověřit novým mobilním měřením (předchozí screenshot `LCP request discovery` upozornil na chybějící vysokou prioritu).
@@ -49,7 +49,8 @@ Aktualizováno: 16. 10. 2026
 - [x] **PageSpeed – desktop (16. 10. 2026):** podle výsledků sdělených uživatelem skóre **Performance 100, Accessibility 100, Best Practices 100, SEO 100**. Jednotlivé metriky desktopu nebyly dodány, ale souhrnné hodnocení je potvrzené.
 - [x] **Bezpečnostní hlavičky:** produkční HTTP odpověď 16. 10. obsahuje `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`. 
 - [x] **Sdílení přes WhatsApp na iPhonu:** uživatel 16. 10. potvrdil `iPhone OK` po výzvě k ověření náhledu sdíleného odkazu. Obrázek `/assets/social-preview.png` současně veřejně dostupný přes HTTPS (HTTP 200).
-- [ ] **Další sociální sítě:** volitelně ověřit náhled při sdílení na Facebooku a LinkedIn; metadata a obrázek už jsou zveřejněny.
+- [x] **Technická příprava sdílení pro Facebook/LinkedIn:** 16. 10. nezávislý test živé HTTPS stránky s User-Agent `facebookexternalhit` ověřil `og:type`, `og:url`, `og:title`, `og:description`, `og:image` a přesně odpovídající PNG obrázek 1200 × 630 (HTTP 200). Workflow: https://github.com/oloman77/vodo-topo-kobliha/actions/runs/38822742587.
+- [ ] **Volitelné vizuální zobrazení náhledu v aplikacích:** zkontrolovat, jak Facebook a LinkedIn skutečně vykreslí sdílený odkaz; technický test OG značek nemůže potvrdit jejich cache a uživatelské rozhraní. Neblokuje předání webu.
 
 ## SEO a propagace
 
