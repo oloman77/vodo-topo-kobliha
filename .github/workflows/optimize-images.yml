@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - .github/workflows/optimize-images.yml
+      - scripts/optimize_images.py
   workflow_dispatch:
 
 permissions:
