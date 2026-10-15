@@ -29,7 +29,10 @@ Aktualizováno: 15. 10. 2026
 - [ ] **Přesměrování:** ověřit trvalé 301/308 přesměrování `www.vodotopokobliha.cz` → `https://vodotopokobliha.cz/`.
 - [ ] **Funkčnost v produkci:** ověřit fotografie, `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt`, `/sitemap.xml`, telefonní a e-mailové odkazy. **Kontrola repozitáře 16. 10.:** místní obrázky existují, odkazy na sekce vedou na existující ID, SEO metadata a jeden H1 jsou v kódu správně. Veřejné HTTP odpovědi se zatím z kontrolního prostředí nepodařilo změřit.
 - [ ] **Responzivita:** otestovat navigaci, kotvy, karty a kontakty na mobilu (včetně 320–390 px), tabletu a desktopu; Safari na iPhonu, Firefox, Edge a Chrome.
-- [ ] **Výkon:** změřit PageSpeed Insights/Lighthouse pro mobil i desktop (LCP, CLS, obrázky) a opravovat jen prokázané problémy.
+- [x] **PageSpeed Insights – mobil, 16. 10. 2026:** Lighthouse Performance **85**, Accessibility **95**, Best Practices **96**, SEO **100**; FCP ~**2,6 s**, LCP **3,9 s**, Speed Index **2,6 s**, TBT **0 ms**, CLS **0,002**. Jde o laboratorní měření (bez dat skutečných uživatelů).
+- [ ] **Výkon – mobilní doporučení k prověření:** Lighthouse uvádí render-blocking requests (odhad úspory až 1 760 ms), nedostatečné objevování LCP, síťové závislosti, doručování obrázků (potenciálně 1 009 KiB) a cache lifetime (potenciálně 360 KiB). Najít konkrétní URL v rozbalených auditech, opravovat cíleně bez vizuálních regresí.
+- [ ] **Přístupnost – kontrast:** Lighthouse 95, jeden audit `Background and foreground colors do not have a sufficient contrast ratio`; vyžádat konkrétní prvky z rozbaleného auditu a případně bezpečně upravit barvu.
+- [ ] **PageSpeed – desktop:** výsledky od uživatele ještě nejsou k dispozici jako čitelný screenshot; zkontrolovat desktop Performance, Accessibility, Best Practices, SEO, LCP a CLS.
 - [ ] **Bezpečnost a sdílení:** zkontrolovat na živé doméně HTTP hlavičky z `_headers` a náhledy při sdílení přes WhatsApp/Facebook/LinkedIn.
 
 ## SEO a propagace
