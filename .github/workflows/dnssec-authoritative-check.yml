@@ -1,0 +1,39 @@
+name: Authoritative DNSSEC and mail check
+
+on:
+  push:
+    paths:
+      - .github/workflows/dnssec-authoritative-check.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  read-only-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Query CZ parent and independent resolvers
+        shell: bash
+        run: |
+          set -u
+          echo "=== DATE ==="
+          date -u
+          echo "=== .CZ PARENT: NS records ==="
+          dig @a.ns.nic.cz vodotopokobliha.cz NS +norecurse +noall +answer +authority +comments +time=5 +tries=2
+          echo "=== .CZ PARENT: DS delegation (source of truth) ==="
+          dig @a.ns.nic.cz vodotopokobliha.cz DS +norecurse +dnssec +noall +answer +authority +comments +time=5 +tries=2
+          echo "=== CLOUDFLARE: DNSKEY ==="
+          dig @junade.ns.cloudflare.com vodotopokobliha.cz DNSKEY +dnssec +norecurse +noall +answer +comments +time=5 +tries=2
+          echo "=== GOOGLE PUBLIC DNS: DS ==="
+          dig @8.8.8.8 vodotopokobliha.cz DS +dnssec +noall +answer +comments +time=5 +tries=2
+          echo "=== CLOUDFLARE PUBLIC DNS: DS ==="
+          dig @1.1.1.1 vodotopokobliha.cz DS +dnssec +noall +answer +comments +time=5 +tries=2
+          echo "=== VALIDATING DNS RESOLVERS: DOMAIN ==="
+          dig @1.1.1.1 vodotopokobliha.cz A +dnssec +noall +answer +comments +time=5 +tries=2
+          dig @8.8.8.8 vodotopokobliha.cz A +dnssec +noall +answer +comments +time=5 +tries=2
+          echo "=== MAIL DNS: MX & SPF ==="
+          dig @1.1.1.1 vodotopokobliha.cz MX +noall +answer +time=5 +tries=2
+          dig @1.1.1.1 vodotopokobliha.cz TXT +noall +answer +time=5 +tries=2 | grep 'spf1' || true
+          echo "=== END ==="
