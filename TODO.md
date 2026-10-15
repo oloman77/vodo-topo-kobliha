@@ -1,48 +1,38 @@
-# Vodo-topo Kobliha – co ještě dokončit
+# Vodo-topo Kobliha – TODO
 
-Aktualizováno: 12. 10. 2026
+Aktualizováno: 15. 10. 2026
 
-## Obsah k potvrzení se zadavatelem
-- [ ] **Cíloví zákazníci:** potvrdit, pro koho firma zakázky realizuje (stavební společnosti, developeři, investoři, SVJ a správci budov, domácnosti).
-- [ ] **Rozsah služeb:** ověřit dílčí práce versus komplexní dodávky, pozáruční servis a zda firma servisuje i instalace jiných dodavatelů.
-- [ ] **Velikost zakázek:** potvrdit případnou minimální hodnotu a ochotu přijímat drobné opravy.
-- [ ] Po upřesnění cílových zákazníků zkontrolovat veřejný text v sekci „O nás“; **aktuální výčet zákazníků na webu je orientační a před ostrým spuštěním vyžaduje potvrzení.**
-- [x] Nahradit prozatímní popisky rozsahu u všech šesti projektů dodanými údaji. Doplněny rozvody, kompletace a počty bytů; u TopTower výslovně plánované práce (255 bytů).
+## Potvrzeno zadavatelem
 
-## K potvrzení se zadavatelem – před ostrým spuštěním
-- [x] Doplnit **rozsah prací a počty bytů** pro Alfa Residence, SO-HO Rezidence, Dubičný potok, LIHOVAR STŘED a JIH i TopTower podle dodaných podkladů (u TopTower označeno jako plánovaná realizace).
-- [ ] Potvrdit **pravdivost názvů, stavu projektů a uvedených finančních objemů**, případně zda smíme každou referenci veřejně použít.
-- [ ] Doložit **oprávnění k použití externích projektových fotografií**, nebo dodat vlastní fotografie realizovaných rozvodů a technologií.
-- [ ] Potvrdit **cílové skupiny, minimální rozsah zakázek, typy servisu** a zda firma přijímá i drobné opravy.
-- [ ] Potvrdit **firemní kontakty a způsob vyřizování poptávek** (telefon a e-mail fungují a jsou určené pro web).
+- [x] **Firemní údaje a kontakty** zveřejněné na webu potvrzeny zadavatelem (15. 10. 2026).
+- [x] **Nabídka služeb, cíloví zákazníci a text sekce „O nás“** v aktuální podobě potvrzeny zadavatelem (15. 10. 2026). Nezveřejňovat neověřené doplňující sliby o minimální velikosti zakázek či servisu cizích instalací.
+- [x] **Reference** – zadavatel potvrdil zveřejněné názvy projektů, stavy, rozsahy prací, počty bytů a uvedené finanční objemy (15. 10. 2026).
+- [x] **Fotografie referencí a jejich použití** potvrzeny zadavatelem (15. 10. 2026). Jde o jeho potvrzení; nezávislé licenční posouzení ani písemné souhlasy nemáme v podkladech.
+- [x] Doplněny konkrétní popisky všech šesti projektů, včetně 255 bytů u plánovaného TopTower.
+- [x] Odstraněna orientační hodnota zakázky TopTower z webu (15. 10. 2026).
+- [x] Sjednocen text patičky na „Vodoinstalace · Topení · Servis“ a upraven úvod sekce Reference.
 
-## Před spuštěním webu
-- [ ] Doplnit a ověřit finální kontaktní údaje firmy (bez vymyšlených údajů).
-- [ ] Dokončit revizi textů, fotografií, referencí a zobrazení na mobilu i desktopu.
-- [ ] Ověřit oprávnění k použití všech externích fotografií.
+## Technické kontroly – zbývá dokončit
 
-## Po nasazení – provozní kontroly
-- [ ] Na finální doméně otestovat úvodní stránku, načtení všech obrázků, `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt` a `/sitemap.xml`.
-- [ ] Otestovat navigaci a kotvy na malém telefonu (320–390 px), běžném mobilu, tabletu a desktopu; ideálně Safari na iPhonu, Firefox, Edge a Chrome.
-- [ ] Otestovat `mailto:` a `tel:` na skutečném mobilu a ověřit obsluhu poptávek.
-- [ ] Změřit PageSpeed Insights / Lighthouse na finální doméně (mobil + desktop), zejména LCP, CLS a zatížení obrázky. Podle výsledků případně optimalizovat `assets/hero-pipes.svg`.
-- [ ] Ověřit skutečné náhledy sdílení (WhatsApp / Facebook / LinkedIn); před zprovozněním ostré domény se obrázek nemusí načíst.
-- [ ] Ověřit, že Cloudflare Pages aplikuje bezpečnostní hlavičky ze souboru `_headers`.
+- [ ] **Cloudflare:** ověřit úspěšné nasazení poslední verze větve `main` (zejména odstraněnou cenu TopTower) na živé doméně.
+- [ ] **Doména:** znovu ověřit dostupnost `https://vodotopokobliha.cz/`, platnost HTTPS a DNS po dokončeném nastavení; původně bylo fungování potvrzeno v konverzaci.
+- [ ] **Přesměrování:** ověřit trvalé 301/308 přesměrování `www.vodotopokobliha.cz` → `https://vodotopokobliha.cz/`.
+- [ ] **Funkčnost:** na finální doméně ověřit fotografie, `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt`, `/sitemap.xml`, telefonní a e-mailové odkazy.
+- [ ] **Responzivita:** otestovat navigaci, kotvy, karty a kontakty na mobilu (včetně 320–390 px), tabletu a desktopu; Safari na iPhonu, Firefox, Edge a Chrome.
+- [ ] **Výkon:** změřit PageSpeed Insights/Lighthouse pro mobil i desktop (LCP, CLS, obrázky) a opravovat jen prokázané problémy.
+- [ ] **Bezpečnost a sdílení:** zkontrolovat na živé doméně HTTP hlavičky z `_headers` a náhledy při sdílení přes WhatsApp/Facebook/LinkedIn.
 
-## Doména a Cloudflare
-- [ ] Nastavit doménu `vodotopokobliha.cz` u současného správce (Seznam) tak, aby směrovala na Cloudflare podle zvoleného způsobu hostingu.
-- [ ] Nastavit `www.vodotopokobliha.cz` → `https://vodotopokobliha.cz/` (trvalé přesměrování).
-- [ ] Zkontrolovat DNS, HTTPS certifikát a dostupnost hlavní adresy.
-- [ ] Vyzkoušet web na mobilu a desktopu po nasazení.
+## SEO a propagace
 
-## SEO a vyhledávače
-- [x] Nastavit SEO title, description, H1 a strukturovaná data organizace.
-- [x] Uvést působnost po celé České republice.
-- [x] Nastavit canonical URL a Open Graph URL na `https://vodotopokobliha.cz/`.
-- [x] Přidat `robots.txt` a `sitemap.xml`.
-- [ ] Ověřit, že jsou na finální doméně dostupné `/robots.txt` a `/sitemap.xml` a že canonical URL odpovídá reálné adrese.
-- [ ] Ověřit vlastnictví domény v Google Search Console a odeslat `https://vodotopokobliha.cz/sitemap.xml`.
+- [x] SEO title, description, H1, canonical URL, strukturovaná data a působnost po celé ČR.
+- [x] Připraveny soubory `robots.txt`, `sitemap.xml`, favicon a sociální náhled.
+- [ ] Ověřit na živé doméně `robots.txt`, `sitemap.xml` a správnost canonical URL.
+- [ ] Přidat a ověřit doménu v **Google Search Console** a odeslat `https://vodotopokobliha.cz/sitemap.xml`.
 - [ ] Zkontrolovat indexaci a případné chyby v Google Search Console.
-- [ ] Zvážit nastavení Seznam Webmaster a firemního profilu podle skutečných firemních údajů a způsobilosti.
+- [ ] Zvážit **Seznam Webmaster** a firemní profil podle skutečné způsobilosti a schválených firemních údajů.
 
-Poznámka: Samotné nastavení SEO nezaručuje pozice ve vyhledávání. Neznámé kontakty ani adresu firmy nevymýšlet.
+## Evidence k archivaci (neblokující)
+
+- [ ] Pokud jsou k dispozici, uložit k projektu písemná oprávnění / licence k externím fotografiím. Potvrzení zadavatele již máme, ale samo o sobě nepředstavuje nezávisle doloženou licenci.
+
+Poznámka: Potvrzení zadavatelem je zaznamenané jako obchodní schválení údajů, nikoli jako nezávislé ověření veřejných registrů či licencí. Ostatní neověřená tvrzení do webu nepřidávat.
