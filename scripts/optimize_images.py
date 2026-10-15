@@ -44,8 +44,8 @@ def download(session, key, url):
                     data = bytearray()
                     for block in resp.iter_content(65536):
                         data.extend(block)
-                        if len(data) > 20_000_000:
-                            raise ValueError("Image source exceeds 20 MB")
+                        if len(data) > 100_000_000:
+                            raise ValueError("Image source exceeds 100 MB")
                 with Image.open(BytesIO(data)) as probe:
                     probe.verify()
                 img = Image.open(BytesIO(data))
