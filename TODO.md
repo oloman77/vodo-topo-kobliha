@@ -1,6 +1,6 @@
 # Vodo-topo Kobliha – TODO
 
-Aktualizováno: 15. 10. 2026
+Aktualizováno: 16. 10. 2026
 
 ## Potvrzeno zadavatelem
 
@@ -20,13 +20,14 @@ Aktualizováno: 15. 10. 2026
 - [x] Kontrola JSON-LD organizace, canonical, robots meta, sitemap, Google a Seznam ověřovacího kódu.
 - [x] Všech šest referenčních fotografií má atributy alt a rozměry; lokální soubory pro favicon, sociální náhled a úvodní grafiku jsou přítomné v repozitáři.
 - [x] Přehled responzivních pravidel a zachování mobilního menu v kódu; reálné vykreslení v prohlížečích zůstává k otestování.
-- [ ] **Optimalizace a stabilita externích fotografií (PageSpeed 16. 10.):** všech šest referenčních obrázků se načítá z cizích serverů. Největší dopad má Dubičný potok na `i.ci.cz` (~738 KiB, Lighthouse odhaduje úsporu ~685 KiB); Wikimedia Lihovar STŘED ~232 KiB, miniatura JIH ~69 KiB, TopTower ~52 KiB; Alfa Residence ~85 KiB. Celkový odhad `Improve image delivery` ~1 009 KiB. Pro 3 soubory Wikimedia (~360 KiB) Lighthouse hlásí `Cache TTL: None`, což na cizím hostingu sami neopravíme. Doporučené řešení: po ověření oprávnění a se zachováním atribuce převést na vhodné rozměry WebP/AVIF, hostovat lokálně v `assets/`, použít responsive obrázky a pro versionované soubory odpovídající cache. Vzhled a ořez zachovat, před a po nasazení ověřit všech šest obrázků. **Zatím neimplementováno.**
+- [x] **Optimalizace a lokální hosting fotografií:** GitHub Actions 16. 10. úspěšně stáhly pět unikátních referenčních fotografií a pozadí patičky, převedly je na 10 verzovaných WebP souborů v `assets/optimized/`, pro šest karet nastavily lokální `src`, pro velké karty také `srcset`/`sizes`. Všechny externí URL fotografií i externí CSS obrázek odstraněny ze zdrojového kódu. Přidány cache hlavičky (rok, immutable). Potvrzeno commitem `ea4eaa2`; atribuce a vzhled v CSS beze změn. **Zbývá ověřit deploy/živou produkci a zopakovat PageSpeed.**
 
 ## Technické kontroly – zbývá dokončit
 
 - [x] **TopTower na produkci:** zadavatel 15. 10. 2026 ověřil, že na ostrém webu už není uvedena cena budoucí zakázky. (Kontrola přesné verze/commit ID Cloudflare nebyla nezávisle provedena.)
 - [ ] **Doména a DNSSEC:** po dokončení automatické aktivace DNSSEC v CZ.NIC znovu ověřit veřejné DNS, dostupnost `https://vodotopokobliha.cz/`, platnost HTTPS a doručování pošty. DNSSEC byl 15. 10. ve stavu Pending; na 16. 10. je již naplánována kontrola. Nezasahovat preventivně do DNS.
 - [ ] **Přesměrování:** ověřit trvalé 301/308 přesměrování `www.vodotopokobliha.cz` → `https://vodotopokobliha.cz/`.
+- [ ] **Lokální obrázky v produkci:** po Cloudflare Pages deploymentu ověřit, že se všech šest fotografií a pozadí patičky načítají jako `/assets/optimized/*.webp` bez 404, že zůstaly ořezy a nedeformuje se rozložení mobil/tablet/desktop. Na GitHubu již vše ověřeno.
 - [ ] **Funkčnost v produkci:** ověřit fotografie, `/favicon.svg`, `/apple-touch-icon.png`, `/assets/social-preview.png`, `/robots.txt`, `/sitemap.xml`, telefonní a e-mailové odkazy. **Kontrola repozitáře 16. 10.:** místní obrázky existují, odkazy na sekce vedou na existující ID, SEO metadata a jeden H1 jsou v kódu správně. Veřejné HTTP odpovědi se zatím z kontrolního prostředí nepodařilo změřit.
 - [ ] **Responzivita:** otestovat navigaci, kotvy, karty a kontakty na mobilu (včetně 320–390 px), tabletu a desktopu; Safari na iPhonu, Firefox, Edge a Chrome.
 - [x] **PageSpeed Insights – mobil, 16. 10. 2026:** Lighthouse Performance **85**, Accessibility **95**, Best Practices **96**, SEO **100**; FCP ~**2,6 s**, LCP **3,9 s**, Speed Index **2,6 s**, TBT **0 ms**, CLS **0,002**. Jde o laboratorní měření (bez dat skutečných uživatelů).
