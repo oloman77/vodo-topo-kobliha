@@ -28,7 +28,7 @@ Aktualizováno: 15. 10. 2026
 - [x] Připraveny soubory `robots.txt`, `sitemap.xml`, favicon a sociální náhled.
 - [ ] Ověřit na živé doméně `robots.txt`, `sitemap.xml` a správnost canonical URL.
 - [x] Přidat a ověřit doménovou službu `vodotopokobliha.cz` v **Google Search Console** – potvrzeno uživatelem 15. 10. 2026 (`Ownership verified`).
-- [ ] Odeslat sitemap `https://vodotopokobliha.cz/sitemap.xml` v Google Search Console a ověřit stav zpracování.
+- [x] Odeslat sitemap `https://vodotopokobliha.cz/sitemap.xml` v Google Search Console – stav **Success**, potvrzeno uživatelem 15. 10. 2026. Indexaci URL kontrolovat zvlášť.
 - [ ] Zkontrolovat indexaci a případné chyby v Google Search Console.
 - [ ] Zvážit **Seznam Webmaster** a firemní profil podle skutečné způsobilosti a schválených firemních údajů.
 
