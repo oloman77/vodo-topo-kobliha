@@ -8,7 +8,7 @@ Jednostránkový prezentační web společnosti Vodo-topo Kobliha s.r.o. Zdrojov
 - Cloudflare Pages: https://vodo-topo-kobliha.pages.dev/
 - GitHub: https://github.com/oloman77/vodo-topo-kobliha
 - Produkční větev: `main`; propojení GitHub → Cloudflare Pages pro automatické nasazování již bylo nakonfigurováno. Po commitu ověřit výsledek v Cloudflare Pages → Deployments, nikoli jen stav GitHubu.
-- HTTPS a přesměrování z HTTP / `www` na hlavní HTTPS doménu byly nastaveny. Po dokončení DNSSEC ověřit skutečné HTTP 301/308 a platnost certifikátu.
+- HTTPS a přesměrování z HTTP / `www` na hlavní HTTPS doménu byly 16. 10. 2026 nezávisle ověřeny (HTTP 301 a platný HTTPS certifikát). Dokončení DNSSEC se sleduje zvlášť; v nadřazené zóně `.cz` zatím chybí DS záznam.
 - DNS spravuje Cloudflare, e-mail běží přes Seznam Email Profi. Při úpravách webu **neměnit DNS/MX/SPF/DKIM/DMARC/DNSSEC bez samostatné diagnostiky a souhlasu**. Stav DNSSEC a jeho následné kontroly eviduje [TODO.md](TODO.md).
 
 ## Struktura projektu
@@ -23,6 +23,8 @@ Jednostránkový prezentační web společnosti Vodo-topo Kobliha s.r.o. Zdrojov
 | `robots.txt`, `sitemap.xml` | Pokyny pro vyhledávače; canonical doména `https://vodotopokobliha.cz/` |
 | `_headers` | Bezpečnostní HTTP hlavičky Cloudflare Pages |
 | `TODO.md` | Projektové úkoly, ověření a provozní kontroly |
+| `FIREMNI_PROFILY.md` | Předávací podklady pro případné firemní zápisy Google a Firmy.cz |
+| `OBRAZKY_LICENCE.md` | Evidované zdroje a veřejné licence obrazových podkladů; chybějící souhlasy |
 
 Web nevyžaduje aplikaci či databázi. Změny obsahu a vzhledu jsou v současné podobě přímo v `index.html`.
 
@@ -53,4 +55,4 @@ Web nevyžaduje aplikaci či databázi. Změny obsahu a vzhledu jsou v současn�
 
 ## Co stále není potvrzeno nezávislým produkčním testem
 
-Dokončení DNSSEC, aktuální HTTP přesměrování a hlavičky, Lighthouse/PageSpeed po optimalizaci, vzhled v reálných prohlížečích, produkční dostupnost všech lokálních fotografií a finální výsledky indexace. Otevřené kontroly jsou v [TODO.md](TODO.md). Není-li dostupná živá stránka z kontrolního prostředí, neoznačovat produkční kontrolu jako dokončenou jen na základě zdrojového kódu.
+Dokončení DNSSEC (chybějící DS v `.cz`), výsledky indexace Google/Seznam, případné založení firemních profilů po schválení zákazníkem a archivace souhlasů k některým fotografiím. Přesměrování, HTTP hlavičky, nasazení WebP a Lighthouse (mobil 97/100, desktop 100/100 ve čtyřech kategoriích) byly ověřeny. Otevřené kontroly jsou v [TODO.md](TODO.md). Není-li dostupná živá stránka z kontrolního prostředí, neoznačovat produkční kontrolu jako dokončenou jen na základě zdrojového kódu.
