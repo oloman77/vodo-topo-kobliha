@@ -14,6 +14,7 @@ Aktualizováno: 15. 10. 2026
 
 ## Statický audit zdrojového kódu – dokončeno 16. 10. 2026
 
+- [x] Doplněna předávací/provozní dokumentace v `README.md`: architektura, nasazení přes GitHub a Cloudflare, důležité SEO adresy, bezpečné úpravy a zásady ochrany mobilního vzhledu (16. 10. 2026).
 - [x] Kontrola struktury HTML: jediný H1, bez duplicitních ID, uzavřené hlavní HTML sekce.
 - [x] Ověření interních odkazů, kotvicích cílů a SVG ikon: v aktuálním kódu bez chybějících odkazů.
 - [x] Kontrola JSON-LD organizace, canonical, robots meta, sitemap, Google a Seznam ověřovacího kódu.
