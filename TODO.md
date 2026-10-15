@@ -20,13 +20,14 @@ Aktualizováno: 16. 10. 2026
 - [x] Kontrola JSON-LD organizace, canonical, robots meta, sitemap, Google a Seznam ověřovacího kódu.
 - [x] Všech šest referenčních fotografií má atributy alt a rozměry; lokální soubory pro favicon, sociální náhled a úvodní grafiku jsou přítomné v repozitáři.
 - [x] Přehled responzivních pravidel a zachování mobilního menu v kódu; reálné vykreslení v prohlížečích zůstává k otestování.
-- [x] **Optimalizace a lokální hosting fotografií:** GitHub Actions 16. 10. úspěšně stáhly pět unikátních referenčních fotografií a pozadí patičky, převedly je na 10 verzovaných WebP souborů v `assets/optimized/`, pro šest karet nastavily lokální `src`, pro velké karty také `srcset`/`sizes`. Všechny externí URL fotografií i externí CSS obrázek odstraněny ze zdrojového kódu. Přidány cache hlavičky (rok, immutable). Potvrzeno commitem `ea4eaa2`; atribuce a vzhled v CSS beze změn. **Zbývá ověřit deploy/živou produkci a zopakovat PageSpeed.**
+- [x] **Optimalizace a lokální hosting fotografií:** GitHub Actions 16. 10. úspěšně stáhly pět unikátních referenčních fotografií a pozadí patičky, převedly je na 10 verzovaných WebP souborů v `assets/optimized/`, pro šest karet nastavily lokální `src`, pro velké karty také `srcset`/`sizes`. Všechny externí URL fotografií i externí CSS obrázek odstraněny ze zdrojového kódu. Přidány cache hlavičky (rok, immutable). Potvrzeno commitem `ea4eaa2`; atribuce a vzhled v CSS beze změn. **Produkční nasazení, HTTP 200, cache i PageSpeed byly následně ověřeny (viz samostatné dokončené úkoly).**
 
 ## Technické kontroly – zbývá dokončit
 
 - [x] **TopTower na produkci:** zadavatel 15. 10. 2026 ověřil, že na ostrém webu už není uvedena cena budoucí zakázky. (Kontrola přesné verze/commit ID Cloudflare nebyla nezávisle provedena.)
 - [x] **Dostupnost ostré domény a HTTPS:** 16. 10. 2026 externí GitHub Actions ověřily HTTP 200 přes platné HTTPS, Cloudflare NS, A/AAAA, MX pro Seznam Email Profi a SPF v TXT. Test dokončen bez změn DNS.
-- [ ] **DNSSEC:** veřejně viditelné DNSKEY i RRSIG, ale při kontrole přes resolver 1.1.1.1 zatím **nebyl vidět DS záznam**. Dokončení aktivace DNSSEC u CZ.NIC potvrdit později; do DNS nezasahovat. Ranní automatizovaná kontrola už byla naplánovaná. Doručování e-mailu kontrolovat samostatně.
+- [x] **DNSSEC – autoritativní diagnostika 16. 10. 2026:** GitHub Actions read-only kontrola přímým dotazem na `a.ns.nic.cz` i přes resolver 8.8.8.8 a 1.1.1.1 prokázala existenci DNSKEY a RRSIG u Cloudflare, ale **neexistenci DS v nadřazené zóně .cz**. Oba rekurzivní resolvery odpovídají bez SERVFAIL, ale delegace není ověřená řetězcem DNSSEC. MX Seznam Email Profi i SPF platné, poštu funkčně neposuzoval. Logy: https://github.com/oloman77/vodo-topo-kobliha/actions/runs/38823206159 .
+- [ ] **DNSSEC – dokončení:** vyčkat na vytvoření DS/KEYSET u CZ.NIC a následně potvrdit řetězec důvěry; zatím **nic neměnit** v nameserverech, DNSSEC, MX, SPF, DKIM či DMARC. Existující ranní automatizovaná kontrola již byla naplánována. Kontrolu doručování e-mailů provádět odděleně.
 - [x] **Přesměrování:** 16. 10. GitHub Actions ověřily trvalé HTTP **301** u `http://vodotopokobliha.cz/`, `http://www.vodotopokobliha.cz/` a `https://www.vodotopokobliha.cz/` → hlavní `https://vodotopokobliha.cz/`.
 - [x] **Nasazení lokálních obrázků:** 16. 10. ostrá stránka vrátila HTML s `assets/optimized/`; namátkově ověřené Dubičný potok, SO-HO, Lihovar JIH, TopTower a patička: všechny HTTP 200 `image/webp` + `Cache-Control: max-age=31536000, immutable`.
 - [x] **Načítání obrázků v prohlížeči:** GitHub Actions test 16. 10. prověřil všech šest fotografií přes Chromium na šesti šířkách (320/375/390/768/1024/1440 px), všechny se načetly, žádná chyba. Screenshoty jsou v artefaktu běhu `38821797038`.
@@ -64,10 +65,12 @@ Aktualizováno: 16. 10. 2026
 - [x] Vložit ověřovací meta tag **Seznam Webmaster** do hlavičky webu (16. 10. 2026).
 - [x] **Seznam Webmaster – HTTPS:** vlastnictví `https://vodotopokobliha.cz/` ověřeno, potvrzeno uživatelem 16. 10. 2026. HTTP varianta je přesměrovaná na HTTPS, proto ji samostatně neověřovat a druhý meta tag nepřidávat.
 - [ ] **Seznam Webmaster – provoz:** po načtení statistik sledovat indexované stránky, přesměrování a případné chyby robota (u nově přidaného webu se data mohou objevit se zpožděním).
-- [ ] Zvážit samostatně firemní profil podle skutečné způsobilosti a schválených údajů.
+- [x] **Podklady firemních profilů:** 16. 10. 2026 ověřeny rejstříkové údaje společnosti, proveden orientační průzkum veřejných výsledků Google Maps a Firmy.cz (jednoznačný firemní profil se nepotvrdil) a připraven dokument [`FIREMNI_PROFILY.md`](FIREMNI_PROFILY.md) s konkrétními údaji, odkazy a pravidly Googlu. Nedostupnost ve výsledcích nevylučuje existenci profilu.
+- [ ] **Firemní profil Google / Firmy.cz:** se zákazníkem potvrdit skutečnou provozní základnu a způsob obsluhy zákazníků (Google nepřipouští neobsazenou virtuální kancelář), vhodnou oblast působnosti, kontakt/otevírací dobu a vlastníka účtu. Potom ověřit existenci přímo ve službách a případně převzít či založit; bez těchto podkladů profil nevytvářet.
 
 ## Evidence k archivaci (neblokující)
 
-- [ ] Pokud jsou k dispozici, uložit k projektu písemná oprávnění / licence k externím fotografiím. Potvrzení zadavatele již máme, ale samo o sobě nepředstavuje nezávisle doloženou licenci.
+- [x] **Veřejné licence obrazových podkladů:** doloženy veřejně Wikimedia Commons: Lihovar (Anna Tesař, CC0 1.0) a TopTower (David Černý / Tomáš Císař, CC BY-SA 4.0, potvrzení VRT). Archivace zdrojů, odkazů a stavu ostatních fotografií v [`OBRAZKY_LICENCE.md`](OBRAZKY_LICENCE.md).
+- [ ] **Souhlasy ke třem neveřejně licencovaným fotografiím:** od zadavatele případně archivovat písemný souhlas/licenci k Alfa Residence, SO-HO Rezidence a Dubičný potok (včetně lokálních WebP kopií a úprav rozměrů). Zadavatel použití potvrdil, ale nezávislá evidence chybí. Neveřejná oprávnění neukládat do veřejného GitHubu.
 
 Poznámka: Potvrzení zadavatelem je zaznamenané jako obchodní schválení údajů, nikoli jako nezávislé ověření veřejných registrů či licencí. Ostatní neověřená tvrzení do webu nepřidávat.
