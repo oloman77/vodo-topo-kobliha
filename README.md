@@ -17,6 +17,7 @@ Jednostránkový prezentační web společnosti Vodo-topo Kobliha s.r.o. Zdrojov
 | --- | --- |
 | `index.html` | Obsah, styly, SVG symboly, metadata a JSON-LD |
 | `assets/hero-pipes.svg` | Grafika úvodní části |
+| `assets/optimized/*.webp` | Lokální optimalizované fotografie referencí a pozadí patičky (v názvech hash kvůli cache) |
 | `assets/social-preview.png` | Obrázek pro Open Graph a sociální sítě |
 | `favicon.svg`, `apple-touch-icon.png` | Ikony webu |
 | `robots.txt`, `sitemap.xml` | Pokyny pro vyhledávače; canonical doména `https://vodotopokobliha.cz/` |
@@ -32,7 +33,7 @@ Web nevyžaduje aplikaci či databázi. Změny obsahu a vzhledu jsou v současn�
 3. Na desktopu má „O nás“ dva sloupce: nadpis a text vlevo, ikony služeb vpravo se začátkem u nadpisu.
 4. TopTower je plánovaná zakázka (255 bytů), **bez uvedené ceny**. Do budoucna případnou cenu nezavádět bez schválení.
 5. Při úpravách referencí zachovat rozdíl mezi uskutečněnými, probíhajícími a budoucími zakázkami.
-6. Fotografie referencí jsou aktuálně načítané z externích serverů. Použití bylo potvrzeno zadavatelem; nezávislé posouzení licencí a dlouhodobá dostupnost souborů nebyly doloženy.
+6. Fotografie všech šesti referenčních karet i pozadí patičky nyní načítáme lokálně z `assets/optimized/*.webp`. Web si podle `srcset` volí menší či větší variantu. Původní zdroje a atribuce zůstaly uvedeny v sekci autorských práv na webu. Použití potvrdil zadavatel; nezávislé posouzení licencí nebylo doloženo.
 7. Každou změnu kontrolovat jako malý diff: neměnit nesouvisející HTML, CSS, SEO, kontakty, funkční odkazy či infrastrukturu.
 
 ## Postup při zveřejnění změny
@@ -52,4 +53,4 @@ Web nevyžaduje aplikaci či databázi. Změny obsahu a vzhledu jsou v současn�
 
 ## Co stále není potvrzeno nezávislým produkčním testem
 
-Dokončení DNSSEC, aktuální HTTP přesměrování a hlavičky, Lighthouse/PageSpeed, vzhled v reálných prohlížečích, dostupnost všech externích fotografií a finální výsledky indexace. Otevřené kontroly jsou v [TODO.md](TODO.md). Není-li dostupná živá stránka z kontrolního prostředí, neoznačovat produkční kontrolu jako dokončenou jen na základě zdrojového kódu.
+Dokončení DNSSEC, aktuální HTTP přesměrování a hlavičky, Lighthouse/PageSpeed po optimalizaci, vzhled v reálných prohlížečích, produkční dostupnost všech lokálních fotografií a finální výsledky indexace. Otevřené kontroly jsou v [TODO.md](TODO.md). Není-li dostupná živá stránka z kontrolního prostředí, neoznačovat produkční kontrolu jako dokončenou jen na základě zdrojového kódu.
