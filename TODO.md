@@ -38,7 +38,7 @@ Aktualizováno: 16. 10. 2026
 - [ ] **Výkon / obrázky – zbývající ověření:** ověřit nový detail `Improve image delivery` / `Use efficient cache lifetimes` a desktopový PageSpeed, plus vizuální kontrolu všech obrázků na mobilu/tabletu/desktopu. LCP 2,6 s těsně nad doporučenými 2,5 s; další optimalizace pouze podle prokázaného problému.
 - [x] **Přístupnost – předběžná oprava kontrastu:** 16. 10. 2026 ztmavena pouze barva malých modrých popisků sekcí `#126fc1` → `#1169b7` na světlých pozadích. V CSS byly vypočteny původní poměry 4,34–4,45 : 1 na různých částech modrého pozadí; nové nejméně 4,73 : 1, tedy přes WCAG AA pro běžný text. Žádné změny layoutu.
 - [x] **Přístupnost – kontrolní mobilní Lighthouse 16. 10.:** skóre Accessibility vzrostlo z 95 na **100** po úpravě kontrastu; nebylo potřeba dalšího zásahu.
-- [ ] **PageSpeed – desktop:** výsledky od uživatele ještě nejsou k dispozici jako čitelný screenshot; zkontrolovat desktop Performance, Accessibility, Best Practices, SEO, LCP a CLS.
+- [x] **PageSpeed – desktop (16. 10. 2026):** podle výsledků sdělených uživatelem skóre **Performance 100, Accessibility 100, Best Practices 100, SEO 100**. Jednotlivé metriky desktopu nebyly dodány, ale souhrnné hodnocení je potvrzené.
 - [ ] **Bezpečnost a sdílení:** zkontrolovat na živé doméně HTTP hlavičky z `_headers` a náhledy při sdílení přes WhatsApp/Facebook/LinkedIn.
 
 ## SEO a propagace
