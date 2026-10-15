@@ -12,6 +12,15 @@ Aktualizováno: 15. 10. 2026
 - [x] Odstraněna orientační hodnota zakázky TopTower z webu (15. 10. 2026).
 - [x] Sjednocen text patičky na „Vodoinstalace · Topení · Servis“ a upraven úvod sekce Reference.
 
+## Statický audit zdrojového kódu – dokončeno 16. 10. 2026
+
+- [x] Kontrola struktury HTML: jediný H1, bez duplicitních ID, uzavřené hlavní HTML sekce.
+- [x] Ověření interních odkazů, kotvicích cílů a SVG ikon: v aktuálním kódu bez chybějících odkazů.
+- [x] Kontrola JSON-LD organizace, canonical, robots meta, sitemap, Google a Seznam ověřovacího kódu.
+- [x] Všech šest referenčních fotografií má atributy alt a rozměry; lokální soubory pro favicon, sociální náhled a úvodní grafiku jsou přítomné v repozitáři.
+- [x] Přehled responzivních pravidel a zachování mobilního menu v kódu; reálné vykreslení v prohlížečích zůstává k otestování.
+- [ ] **Pozor na externí fotografie:** všech šest obrázků referencí se načítá z cizích serverů. Ověřit v produkci, že se všechny načítají; případné hostování lokálně řešit až po přípravě binárních souborů a potvrzení oprávnění.
+
 ## Technické kontroly – zbývá dokončit
 
 - [x] **TopTower na produkci:** zadavatel 15. 10. 2026 ověřil, že na ostrém webu už není uvedena cena budoucí zakázky. (Kontrola přesné verze/commit ID Cloudflare nebyla nezávisle provedena.)
