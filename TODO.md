@@ -31,7 +31,9 @@ Aktualizováno: 15. 10. 2026
 - [x] Odeslat sitemap `https://vodotopokobliha.cz/sitemap.xml` v Google Search Console – stav **Success**, potvrzeno uživatelem 15. 10. 2026. Indexaci URL kontrolovat zvlášť.
 - [x] **Požádat o indexaci:** 15. 10. 2026 Google Search Console potvrdila `Indexing requested` – URL zařazena do prioritní fronty pro procházení (potvrzeno uživatelem). Živý test URL nebyl zvlášť potvrzen.
 - [ ] **Sledovat indexaci Google:** poslední známý stav `Discovered – currently not indexed`, poslední procházení `N/A`. Za několik dní znovu ověřit URL Inspection, případné chyby a skutečné zaindexování; požadavek neopakovat bez důvodu.
-- [ ] Zvážit **Seznam Webmaster** a firemní profil podle skutečné způsobilosti a schválených firemních údajů.
+- [x] Vložit ověřovací meta tag **Seznam Webmaster** do hlavičky webu (16. 10. 2026).
+- [ ] Po nasazení meta tagu do produkce dokončit **ověření vlastnictví v Seznam Webmaster** a případně odeslat sitemap.
+- [ ] Zvážit samostatně firemní profil podle skutečné způsobilosti a schválených údajů.
 
 ## Evidence k archivaci (neblokující)
 
