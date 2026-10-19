@@ -44,7 +44,7 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:15px;color:#
 <strong>Registrátor domény:</strong> FORPSI (registrace domény nemusí být při stěhování měněna)<br>
 <strong>Současné DNS:</strong> Cloudflare · <strong>E-mail:</strong> Seznam Email Profi</p>
 </header>
-<div class="box success"><strong>Co tato záloha zajišťuje:</strong> Z webových souborů v přiloženém archivu může jiný správce znovu zveřejnit shodný obsah a vzhled webu. Není nutné získat přístup do původního účtu GitHub ani Cloudflare. K použití domény <em>vodotopokobliha.cz</em> ale musí mít majitel možnost měnit její DNS/NSSET u registrátora.</div>
+<div class="box success"><strong>Co tato záloha zajišťuje:</strong> Z kompletních provozních souborů v přiloženém archivu může jiný správce znovu zveřejnit shodný obsah a vzhled webu. Není nutné získat přístup do původního účtu GitHub ani Cloudflare. K použití domény <em>vodotopokobliha.cz</em> ale musí mít majitel možnost měnit její DNS/NSSET u registrátora.</div>
 <nav><strong>Obsah:</strong>
 <ul>
 <li><a href="#obsah">1. Co obsahuje ZIP a co ne</a></li>
@@ -53,7 +53,8 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:15px;color:#
 <li><a href="#varianta-b">4. Varianta B – hosting bez GitHubu a Cloudflare</a></li>
 <li><a href="#dnssec">5. DNSSEC a bezpečné přepnutí DNS</a></li>
 <li><a href="#kontrola">6. Závěrečná kontrola a případný návrat zpět</a></li>
-<li><a href="#udrzba">7. Jak později aktualizovat obsah</a></li>
+<li><a href="#licence">7. Původ fotografií a podmínky použití</a></li>
+<li><a href="#udrzba">8. Jak později aktualizovat obsah</a></li>
 </ul></nav>
 <h2 id="obsah">1. Co obsahuje ZIP</h2>
 <p>Stažený archiv obsahuje složku s kompletními zdrojovými soubory webu a tuto příručku ve složce <code>PREDANI</code>. Základní struktura:</p>
@@ -64,8 +65,8 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:15px;color:#
 <tr><td><code>favicon.svg</code>, <code>apple-touch-icon.png</code></td><td>Ikony webu.</td></tr>
 <tr><td><code>robots.txt</code>, <code>sitemap.xml</code></td><td>Soubory pro vyhledávače.</td></tr>
 <tr><td><code>_headers</code></td><td>Nastavení HTTP hlaviček pro Cloudflare Pages; na jiném hostingu se automaticky nemusí použít.</td></tr>
-<tr><td><code>README.md</code>, <code>TODO.md</code>, <code>.github/</code>, další <code>.md</code> a <code>scripts/</code></td><td>Technická dokumentace a vývojové soubory. Jsou užitečné novému správci; na obyčejný hosting se běžně <strong>nenahrávají</strong>.</td></tr>
-<tr><td><code>PREDANI/NAVOD_OBNOVENI_WEBU.html</code></td><td>Tato příručka. Lze otevřít v prohlížeči a vytisknout pomocí Ctrl+P.</td></tr>
+<tr><td><code>PREDANI/NAVOD_OBNOVENI_WEBU.html</code></td><td>Tento podrobný návod včetně přehledu původu použitých obrazových podkladů. Do veřejného webového adresáře se <strong>nenahrává</strong>.</td></tr>
+
 </table>
 <div class="box warning"><strong>Záloha neobsahuje:</strong> hesla, přístupy do FORPSI/GitHubu/Cloudflare, privátní DNSSEC klíče, historii e-mailových schránek ani konfiguraci DNS zóny z účtu Cloudflare. Tyto věci se při migraci řeší samostatně. <strong>Celý ZIP nevkládejte na veřejný webhosting.</strong> Zveřejnit se mají pouze soubory určené pro web.</div>
 <h2 id="priprava">2. Co připravit před jakýmkoli přesunem</h2>
@@ -98,7 +99,7 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:15px;color:#
 <ol>
 <li><strong>Objednat běžný webhosting</strong> pro doménu <code>vodotopokobliha.cz</code>. Není potřeba WordPress ani databáze; web je tvořen statickými soubory.</li>
 <li><strong>Rozbalit ZIP</strong> a do veřejného kořenového adresáře hostingu (například <code>www</code>, <code>public_html</code> nebo <code>htdocs</code>) nahrát <code>index.html</code>, celou složku <code>assets/</code>, <code>favicon.svg</code>, <code>apple-touch-icon.png</code>, <code>robots.txt</code> a <code>sitemap.xml</code>. Zachovat názvy i relativní cesty.</li>
-<li><strong>Nenahrávat vývojové podklady</strong> jako <code>.github/</code>, <code>scripts/</code>, <code>README.md</code>, <code>TODO.md</code> či složku <code>PREDANI/</code> do veřejného adresáře hostingu. Ponechat si je soukromě jako technickou zálohu.</li>
+<li><strong>Nenahrávat složku <code>PREDANI/</code></strong> do veřejného adresáře hostingu. Ponechat si ji soukromě jako návod pro případnou další migraci. Soubory <code>_headers</code> mohou zůstat v záloze, ale jejich chování závisí na platformě nového hostingu.</li>
 <li><strong>Nastavit HTTPS</strong> s platným certifikátem pro doménu a případně <code>www</code>. Obvykle lze zapnout bezplatný certifikát v administraci webhostingu.</li>
 <li><strong>Nastavit přesměrování:</strong> <code>http://vodotopokobliha.cz/</code>, <code>http://www.vodotopokobliha.cz/</code> i <code>https://www.vodotopokobliha.cz/</code> mají trvale (HTTP 301) vést na <code>https://vodotopokobliha.cz/</code>. Způsob nastavení záleží na hostingu.</li>
 <li><strong>Otestovat web před přepnutím DNS</strong> na testovací adrese nebo přes funkci náhledu hostingu. Zkontrolovat všechny obrázky, strukturu stránky, telefonní a e-mailové odkazy.</li>
@@ -133,7 +134,17 @@ footer{border-top:1px solid var(--line);margin-top:44px;padding-top:15px;color:#
 <tr><td>E-mail</td><td>Správné MX, SPF, DKIM, DMARC; provést skutečný test <strong>odeslání i přijetí</strong> zprávy z jiné domény.</td></tr>
 </table>
 <div class="box warning"><strong>Pokud něco selže:</strong> nepřepisovat naslepo další DNS záznamy. Porovnat nové nastavení s uloženým původním stavem. Případný návrat nameserverů musí respektovat aktuální DNSSEC KEYSET/DS a jeho TTL. Staré služby rušit až po stabilním ověření nových.</div>
-<h2 id="udrzba">7. Jak se web po převodu aktualizuje</h2>
+<h2 id="licence">7. Původ fotografií a podmínky použití</h2>
+<p>Následující přehled je informativní technická evidence použitých podkladů, nikoli smlouva ani právní posudek. Neobsahuje osobní korespondenci nebo neveřejné licenční dokumenty. U konkrétních referenčních fotografií je zveřejnění schválené objednatelem; toto schválení samo o sobě není nezávislým doložením autorských práv třetích osob.</p>
+<table>
+<tr><th>Podklad</th><th>Zdroj a evidovaný stav</th></tr>
+<tr><td>Fotografie Lihovar (STŘED i JIH)</td><td>Wikimedia Commons, Anna Tesař, CC0 1.0: <a href="https://commons.wikimedia.org/wiki/File:Lihovar_Sm%C3%ADchov_(10).jpg">zdroj fotografie</a>.</td></tr>
+<tr><td>Vizualizace TopTower</td><td>Wikimedia Commons, David Černý / Tomáš Císař, Trigema / Black n’Arch, CC BY-SA 4.0: <a href="https://commons.wikimedia.org/wiki/File:TOPTOWER_1.jpg">zdroj fotografie a licenční podmínky</a>.</td></tr>
+<tr><td>Fotografie pozadí patičky</td><td>Unsplash: <a href="https://unsplash.com/license">obecné licenční podmínky</a>; přesný autor fotografie nebyl nezávisle určen.</td></tr>
+<tr><td>Alfa Residence, SO-HO, Dubičný potok</td><td>Referenční fotografie získané z veřejných webových zdrojů. Jejich zveřejnění odsouhlasil zadavatel, ale nezávislé doklady o právu dalšího použití nebyly součástí tohoto předání.</td></tr>
+</table>
+<p>Podrobnější autorské odkazy a zdroje jsou rovněž uvedeny na samotném webu v rozbalovací sekci „Autorská práva a zdroje obrázků“. Technický správce musí při budoucí změně fotografií zachovat podmínky příslušných licencí.</p>
+<h2 id="udrzba">8. Jak se web po převodu aktualizuje</h2>
 <h3>Pokud používáte GitHub + Cloudflare</h3>
 <p>Správce upraví <code>index.html</code> nebo obrázky v <code>assets/</code>, uloží změnu do repozitáře a Cloudflare Pages obvykle automaticky vytvoří nové nasazení. Po změně je třeba ověřit úspěšný deployment a stránku na mobilu i počítači.</p>
 <h3>Pokud používáte běžný webhosting</h3>
