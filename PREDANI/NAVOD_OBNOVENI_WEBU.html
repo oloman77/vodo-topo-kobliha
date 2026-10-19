@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vodo-topo Kobliha | Předání a obnovení webu</title>
+<style>
+:root{--navy:#123251;--blue:#1766a6;--light:#eff6fc;--line:#dce5ee;--ink:#243647;--orange:#bd5a17}
+*{box-sizing:border-box}
+body{max-width:900px;margin:0 auto;padding:28px 28px 64px;font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.58;background:#fff}
+h1,h2,h3{color:var(--navy);line-height:1.25}
+h1{font-size:32px;margin:8px 0}h2{font-size:23px;margin:38px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+h3{font-size:17px;margin:23px 0 8px}
+p{margin:9px 0 14px}li{margin:6px 0}ul,ol{padding-left:23px}a{color:var(--blue)}
+small,.muted{color:#5a6d7d}
+.kicker{color:var(--orange);font-size:12px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase}
+.hero{padding:25px 27px;border-radius:14px;background:linear-gradient(115deg,#e9f4ff,#f8fbff);border:1px solid #cde4f4}
+.hero p{max-width:700px}
+.box{padding:13px 17px;background:var(--light);border-left:4px solid var(--blue);margin:17px 0;border-radius:3px}
+.warning{background:#fff7ed;border-left-color:var(--orange)}
+.success{background:#f2f9f6;border-left-color:#398563}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.grid>div{padding:17px;background:#f5f8fb;border:1px solid var(--line);border-radius:9px}
+.grid p{margin-bottom:0}table{border-collapse:collapse;width:100%;font-size:14px;margin:15px 0}
+td,th{padding:9px 12px;border:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#edf4fb;color:var(--navy)}
+code{font-family:Consolas,"Courier New",monospace;background:#eff4f8;padding:1px 4px;overflow-wrap:anywhere}
+a{overflow-wrap:anywhere}
+.subtle{font-size:13px}
+nav{padding:14px 20px;border:1px solid var(--line);border-radius:9px;margin:23px 0}
+nav ul{margin:6px 0}
+footer{border-top:1px solid var(--line);margin-top:44px;padding-top:15px;color:#637482;font-size:12px}
+@media(max-width:640px){body{padding:15px}.grid{grid-template-columns:1fr}.hero{padding:18px}h1{font-size:26px}}
+@media print{@page{size:A4;margin:16mm}body{max-width:none;padding:0;font-size:10.5pt}a{text-decoration:none;color:#123251}h2,h3{break-after:avoid}table,.box,.grid>div{break-inside:avoid}.hero{background:#f4f7fa}.pagebreak{break-before:page}nav{display:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="kicker">Předávací příručka · 19. října 2026</div>
+<h1>Vodo-topo Kobliha s.r.o.<br>Obnovení a převod firemního webu</h1>
+<p>Jednoduchý návod pro majitele webu a jeho případného nového správce. Obsahuje <strong>dvě nezávislé možnosti obnovení</strong>: s GitHubem a Cloudflare nebo na běžném webhostingu bez těchto služeb.</p>
+<p><strong>Web:</strong> <a href="https://vodotopokobliha.cz/">https://vodotopokobliha.cz/</a><br>
+<strong>Typ:</strong> statický web bez databáze a bez WordPressu<br>
+<strong>Registrátor domény:</strong> FORPSI (registrace domény nemusí být při stěhování měněna)<br>
+<strong>Současné DNS:</strong> Cloudflare · <strong>E-mail:</strong> Seznam Email Profi</p>
+</header>
+<div class="box success"><strong>Co tato záloha zajišťuje:</strong> Z webových souborů v přiloženém archivu může jiný správce znovu zveřejnit shodný obsah a vzhled webu. Není nutné získat přístup do původního účtu GitHub ani Cloudflare. K použití domény <em>vodotopokobliha.cz</em> ale musí mít majitel možnost měnit její DNS/NSSET u registrátora.</div>
+<nav><strong>Obsah:</strong>
+<ul>
+<li><a href="#obsah">1. Co obsahuje ZIP a co ne</a></li>
+<li><a href="#priprava">2. Příprava před změnou provozovatele</a></li>
+<li><a href="#varianta-a">3. Varianta A – GitHub + Cloudflare Pages</a></li>
+<li><a href="#varianta-b">4. Varianta B – hosting bez GitHubu a Cloudflare</a></li>
+<li><a href="#dnssec">5. DNSSEC a bezpečné přepnutí DNS</a></li>
+<li><a href="#kontrola">6. Závěrečná kontrola a případný návrat zpět</a></li>
+<li><a href="#udrzba">7. Jak později aktualizovat obsah</a></li>
+</ul></nav>
+<h2 id="obsah">1. Co obsahuje ZIP</h2>
+<p>Stažený archiv obsahuje složku s kompletními zdrojovými soubory webu a tuto příručku ve složce <code>PREDANI</code>. Základní struktura:</p>
+<table>
+<tr><th>Soubor / složka</th><th>Účel</th></tr>
+<tr><td><code>index.html</code></td><td>Hlavní stránka, texty, vzhled i základní SEO nastavení.</td></tr>
+<tr><td><code>assets/</code></td><td>Grafika a optimalizované fotografie. Zachovat celou strukturu.</td></tr>
+<tr><td><code>favicon.svg</code>, <code>apple-touch-icon.png</code></td><td>Ikony webu.</td></tr>
+<tr><td><code>robots.txt</code>, <code>sitemap.xml</code></td><td>Soubory pro vyhledávače.</td></tr>
+<tr><td><code>_headers</code></td><td>Nastavení HTTP hlaviček pro Cloudflare Pages; na jiném hostingu se automaticky nemusí použít.</td></tr>
+<tr><td><code>README.md</code>, <code>TODO.md</code>, <code>.github/</code>, další <code>.md</code> a <code>scripts/</code></td><td>Technická dokumentace a vývojové soubory. Jsou užitečné novému správci; na obyčejný hosting se běžně <strong>nenahrávají</strong>.</td></tr>
+<tr><td><code>PREDANI/NAVOD_OBNOVENI_WEBU.html</code></td><td>Tato příručka. Lze otevřít v prohlížeči a vytisknout pomocí Ctrl+P.</td></tr>
+</table>
+<div class="box warning"><strong>Záloha neobsahuje:</strong> hesla, přístupy do FORPSI/GitHubu/Cloudflare, privátní DNSSEC klíče, historii e-mailových schránek ani konfiguraci DNS zóny z účtu Cloudflare. Tyto věci se při migraci řeší samostatně. <strong>Celý ZIP nevkládejte na veřejný webhosting.</strong> Zveřejnit se mají pouze soubory určené pro web.</div>
+<h2 id="priprava">2. Co připravit před jakýmkoli přesunem</h2>
+<ol>
+<li><strong>Ověřit kontrolu nad doménou:</strong> majitel nebo jeho pověřený správce se musí dostat do správy domény u FORPSI a mít právo měnit NSSET, KEYSET a DNS podle potřeby.</li>
+<li><strong>Rozhodnout, kdo bude správcem:</strong> nového hostingu, domény a případně GitHubu a Cloudflare. U nové infrastruktury doporučujeme účty založené na firmu a správci přidělit jen potřebná oprávnění.</li>
+<li><strong>Připravit zálohu DNS:</strong> pokud je současná DNS zóna ještě dostupná, vypsat nebo exportovat všechny záznamy, zejména A/AAAA/CNAME, MX, TXT (SPF), DKIM, DMARC, případně CAA a další používané záznamy. V archivu webu tyto záznamy nejsou.</li>
+<li><strong>Nechat starý web běžet:</strong> nový web nejprve otestovat na dočasné adrese. DNS přepínat až po úspěšném testu.</li>
+<li><strong>Zapsat původní stav:</strong> který hosting obsluhuje doménu, aktuální NSSET a KEYSET u CZ.NIC, kam směřuje pošta a jaká přesměrování fungují.</li>
+</ol>
+<div class="grid">
+<div><strong>Varianta A</strong><p>GitHub ukládá zdrojové soubory. Cloudflare Pages web automaticky zveřejňuje. Vhodná pro správce, kteří chtějí verzování a snadný návrat k předchozí verzi.</p></div>
+<div><strong>Varianta B</strong><p>Soubory se uloží přímo u běžného poskytovatele webhostingu. GitHub ani Cloudflare nejsou potřeba. Vhodná pro jednoduché předání jinému správci.</p></div>
+</div>
+<h2 class="pagebreak" id="varianta-a">3. Varianta A – obnovení pomocí GitHubu a Cloudflare</h2>
+<p><strong>Potřebujete:</strong> přístup k novému účtu GitHub, Cloudflare a k doméně u FORPSI. Není potřeba účet původního dodavatele.</p>
+<ol>
+<li><strong>Rozbalit ZIP</strong> do samostatné složky v počítači. Ověřit, že se uvnitř nachází <code>index.html</code> a <code>assets/</code>.</li>
+<li><strong>Vytvořit vlastní GitHub repozitář</strong> (například <code>vodo-topo-kobliha</code>). Pomocí GitHub Desktop nebo Git nahrát zdrojové soubory ze ZIPu do nové větve <code>main</code>. Pohlídat strukturu – <code>index.html</code> musí být v kořenovém adresáři repozitáře, nikoli v další vnořené složce.</li>
+<li><strong>V Cloudflare otevřít Workers &amp; Pages</strong>, vytvořit nový projekt typu <strong>Pages</strong>, zvolit připojení existujícího GitHub repozitáře a vybrat nově vytvořený repozitář.</li>
+<li><strong>Nastavit statický web:</strong> produkční větev <code>main</code>; bez frameworku; build není potřebný (podle aktuálního rozhraní lze použít příkaz <code>exit 0</code>); výstupní adresář <code>.</code>, pokud je <code>index.html</code> v kořeni projektu. Konfiguraci před nasazením ověřit podle aktuální dokumentace Cloudflare.</li>
+<li><strong>Otestovat adresu</strong> přidělenou v doméně <code>*.pages.dev</code>. Projít hlavní stránku, mobilní vzhled, všech šest referencí, ikonky a telefonní/e-mailové odkazy.</li>
+<li><strong>Připojit vlastní doménu</strong> v nastavení projektu Pages. Pokud nová instalace používá i nový účet Cloudflare pro DNS, napřed připravit všechny DNS záznamy v nové zóně a řídit se postupem v kapitole 5. <strong>Samotné přidání domény v Pages není bezpečný pokyn k okamžité výměně nameserverů.</strong></li>
+<li><strong>Po přepnutí DNS ověřit</strong> HTTPS, přesměrování HTTP a <code>www</code>, DNSSEC i funkci firemní pošty. Původní hosting zatím nerušit.</li>
+</ol>
+<div class="box"><strong>Důležité:</strong> Pokud se pouze přesouvají zdrojové soubory a Pages projekt <em>v rámci stejného účtu Cloudflare</em>, nemusí být nutné měnit DNSSEC nebo autoritativní DNS. Pokud se ale web i DNS stěhují do <em>jiného účtu</em> Cloudflare, mohou se změnit nameservery i DNSSEC klíče. To už je změna DNS poskytovatele a vyžaduje kapitolu 5.</div>
+<p class="subtle">Oficiální návod: <a href="https://developers.cloudflare.com/pages/framework-guides/deploy-anything/">Cloudflare Pages – Static HTML</a>.</p>
+<h2 class="pagebreak" id="varianta-b">4. Varianta B – běžný hosting bez GitHubu a Cloudflare</h2>
+<p><strong>Potřebujete:</strong> běžný webhosting podporující statické HTML soubory a HTTPS (například hosting u FORPSI nebo jiného poskytovatele), přístup k jeho správě a kontrolu nad doménou.</p>
+<ol>
+<li><strong>Objednat běžný webhosting</strong> pro doménu <code>vodotopokobliha.cz</code>. Není potřeba WordPress ani databáze; web je tvořen statickými soubory.</li>
+<li><strong>Rozbalit ZIP</strong> a do veřejného kořenového adresáře hostingu (například <code>www</code>, <code>public_html</code> nebo <code>htdocs</code>) nahrát <code>index.html</code>, celou složku <code>assets/</code>, <code>favicon.svg</code>, <code>apple-touch-icon.png</code>, <code>robots.txt</code> a <code>sitemap.xml</code>. Zachovat názvy i relativní cesty.</li>
+<li><strong>Nenahrávat vývojové podklady</strong> jako <code>.github/</code>, <code>scripts/</code>, <code>README.md</code>, <code>TODO.md</code> či složku <code>PREDANI/</code> do veřejného adresáře hostingu. Ponechat si je soukromě jako technickou zálohu.</li>
+<li><strong>Nastavit HTTPS</strong> s platným certifikátem pro doménu a případně <code>www</code>. Obvykle lze zapnout bezplatný certifikát v administraci webhostingu.</li>
+<li><strong>Nastavit přesměrování:</strong> <code>http://vodotopokobliha.cz/</code>, <code>http://www.vodotopokobliha.cz/</code> i <code>https://www.vodotopokobliha.cz/</code> mají trvale (HTTP 301) vést na <code>https://vodotopokobliha.cz/</code>. Způsob nastavení záleží na hostingu.</li>
+<li><strong>Otestovat web před přepnutím DNS</strong> na testovací adrese nebo přes funkci náhledu hostingu. Zkontrolovat všechny obrázky, strukturu stránky, telefonní a e-mailové odkazy.</li>
+<li><strong>Pokud odcházíte i z Cloudflare DNS:</strong> zřídit autoritativní DNS u nového poskytovatele, přesně do něj převést <em>veškeré</em> potřebné DNS záznamy, a teprve potom postupovat podle kapitoly 5. Pokud Cloudflare nadále zůstává DNS správcem, mění se pouze DNS záznamy webu a DNSSEC/NSSET se nemění.</li>
+<li><strong>Po přepnutí domény</strong> znovu otestovat HTTPS, přesměrování, DNSSEC a e-mail. Zkontrolovat i to, zda nový hosting umí bezpečnostní HTTP hlavičky; původní soubor <code>_headers</code> funguje specificky na Cloudflare Pages.</li>
+</ol>
+<div class="box success"><strong>Důležité oddělení:</strong> Přestěhování <em>webhostingu</em> samo o sobě neznamená přestěhování <em>registrace domény</em> nebo <em>e-mailových schránek</em>. Doména může zůstat u FORPSI a e-mail dále u Seznam Email Profi.</div>
+<h2 class="pagebreak" id="dnssec">5. DNSSEC a bezpečné přepnutí DNS – nejcitlivější část</h2>
+<p>V říjnu 2026 je pro <code>vodotopokobliha.cz</code> aktivní DNSSEC s KEYSETem <code>KOBLIHA-CLOUDFLARE-DNSSEC</code>, který odpovídá klíčům stávajících DNS serverů Cloudflare. Tyto konkrétní klíče <strong>nelze automaticky přenést na jiného DNS provozovatele</strong>.</p>
+<div class="box warning"><strong>Varování:</strong> Pokud správce změní nameservery a nechá v registru CZ.NIC starý DS/KEYSET pro původní Cloudflare klíče, může validace DNSSEC selhat (SERVFAIL). Výsledkem může být nedostupný web <strong>i e-mail</strong>, přestože jsou jejich servery v pořádku. Neprovádějte změnu NSSET a KEYSET metodou pokus–omyl.</div>
+<h3>Bezpečná běžná varianta: vypnutí DNSSEC během migrace DNS</h3>
+<ol>
+<li><strong>Nejprve připravit nového DNS poskytovatele:</strong> u nových autoritativních serverů založit všechny nutné záznamy a ověřit, že je servery správně vracejí; zejména MX a TXT pro Seznam Email Profi. Staré DNS musí zatím zůstat aktivní.</li>
+<li><strong>Ve FORPSI odebrat přiřazení původního KEYSETu</strong> k doméně (tj. zajistit odstranění starého DS z nadřazené zóny <code>.cz</code>). Změnu musí provést oprávněný správce podle aktuálního postupu registrátora.</li>
+<li><strong>Vyčkat nejen na veřejné odstranění DS u CZ.NIC, ale i na vypršení jeho TTL v cache validujících resolverů.</strong> Nestačí, že na jedné obrazovce již DS není; délka čekání záleží na skutečném TTL.</li>
+<li><strong>Teprve potom změnit NSSET / nameservery</strong> na nového DNS poskytovatele. Nechat původní i nové DNS dostupné po přechodnou dobu a kontrolovat odpovědi.</li>
+<li><strong>Až nový DNS funguje, znovu zapnout DNSSEC</strong>, pokud jej nový poskytovatel podporuje, a vytvořit/registrovat odpovídající nový KEYSET/DS. Pokud nový poskytovatel DNSSEC neumí, lze mít funkční doménu bez DNSSEC; zabezpečení DNS však bude nižší.</li>
+<li><strong>Ověřit plnou validaci</strong> proti autoritativním serverům a nezávislým validujícím resolverům, nikoliv jen přítomnost DNSKEY/RRSIG.</li>
+</ol>
+<p>Pokročilé bezvýpadkové přechody s multi-signer DNSSEC existují, ale vyžadují podporu obou DNS provozovatelů a odbornou koordinaci; tento jednoduchý návod je nenahrazuje.</p>
+<p><strong>Kontroly:</strong> <a href="https://dnssec-debugger.verisignlabs.com/">Verisign DNSSEC Debugger</a>, <a href="https://internet.nl/">Internet.nl</a>. Pro správu .cz používat FORPSI a informace registru CZ.NIC.</p>
+<h2 id="kontrola">6. Závěrečná kontrola před vypnutím staré služby</h2>
+<table>
+<tr><th>Co zkontrolovat</th><th>Správný stav</th></tr>
+<tr><td>Hlavní web</td><td><code>https://vodotopokobliha.cz/</code> se načte bez varování o certifikátu.</td></tr>
+<tr><td>Přesměrování</td><td>HTTP a <code>www</code> směřují na jedinou kanonickou HTTPS adresu.</td></tr>
+<tr><td>Obsah</td><td>Úvod, nabídka služeb, všech šest referencí, fotografie a ikony odpovídají originálu.</td></tr>
+<tr><td>Mobilní zobrazení</td><td>Menu, tlačítka a fotografie fungují na telefonu.</td></tr>
+<tr><td>Kontakty</td><td>Telefonní i e-mailové odkazy vedou na správná firemní spojení.</td></tr>
+<tr><td>Vyhledávače</td><td><code>/robots.txt</code> a <code>/sitemap.xml</code> vracejí obsah; hlavní URL je stále stejná.</td></tr>
+<tr><td>DNSSEC</td><td>Žádný SERVFAIL; pokud je DNSSEC aktivní, nezávislá validace celého řetězce je úspěšná.</td></tr>
+<tr><td>E-mail</td><td>Správné MX, SPF, DKIM, DMARC; provést skutečný test <strong>odeslání i přijetí</strong> zprávy z jiné domény.</td></tr>
+</table>
+<div class="box warning"><strong>Pokud něco selže:</strong> nepřepisovat naslepo další DNS záznamy. Porovnat nové nastavení s uloženým původním stavem. Případný návrat nameserverů musí respektovat aktuální DNSSEC KEYSET/DS a jeho TTL. Staré služby rušit až po stabilním ověření nových.</div>
+<h2 id="udrzba">7. Jak se web po převodu aktualizuje</h2>
+<h3>Pokud používáte GitHub + Cloudflare</h3>
+<p>Správce upraví <code>index.html</code> nebo obrázky v <code>assets/</code>, uloží změnu do repozitáře a Cloudflare Pages obvykle automaticky vytvoří nové nasazení. Po změně je třeba ověřit úspěšný deployment a stránku na mobilu i počítači.</p>
+<h3>Pokud používáte běžný webhosting</h3>
+<p>Správce upraví soubory v počítači a nahraje změněné soubory přes správce souborů hostingu nebo bezpečné SFTP/FTPS. Na běžném hostingu se obvykle používá ruční zveřejnění. Před každou úpravou se doporučuje zachovat kopii předchozí funkční verze.</p>
+<h3>Co zvládne majitel sám</h3>
+<p>Pan Kobliha může připravit nové texty, opravy kontaktů a fotografie a předat je vybranému správci. Současný web nemá redakční systém pro klikací úpravy. Změny lze technicky dělat bez původního dodavatele, ale je vhodné, aby je provedl člověk znalý práce s HTML a hostingem.</p>
+<div class="box"><strong>Jistota nezávislosti:</strong> archiv webu a tento návod umožňují zvolit nového správce. Majitel by si měl samostatně uchovávat přístupy ke své doméně a novým provozním účtům. ZIP si bezpečně uschovejte a po větších změnách vytvořte novou kopii.</div>
+<footer>
+Předávací technický návod pro Vodo-topo Kobliha s.r.o. · Stav zdrojových souborů odpovídá přiloženému archivu z 19. 10. 2026. Rozhraní poskytovatelů a DNS záznamy se mohou časem změnit; před zásahem ověřit aktuální údaje a postup. Dokument neobsahuje žádné přístupové údaje ani hesla. Otevření: dvojklik na tento HTML soubor. Tisk/PDF: Ctrl+P → Uložit jako PDF.
+</footer>
+</body>
+</html>
