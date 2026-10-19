@@ -1,14 +1,18 @@
 # Vodo-topo Kobliha – TODO
 
-Aktualizováno: 16. 10. 2026
+Aktualizováno: 19. 10. 2026
 
-## Aktuálně otevřené úkoly (3)
+## Stav projektu – dokončeno (19. 10. 2026)
 
-> Web, HTTPS, e-mailové DNS, responzivita, výkon a náhledy sdílení byly otestovány. Následující úkoly jsou pouze ke sledování a ověření; **bez výslovného souhlasu neprovádět změny v DNS, Cloudflare, GitHubu ani poště**.
+Zbývající tři úkoly z 16. 10. 2026 byly 19. 10. 2026 potvrzeny jako splněné. Nejsou nyní otevřené další úkoly; web ponechat bez zásahů, pokud nevznikne konkrétní obchodní nebo technický požadavek.
 
-- [ ] **1. DNSSEC – nejvyšší priorita.** Počkat na automatické vytvoření a přiřazení KEYSET/DS u CZ.NIC. Poslední autoritativní test 16. 10. 2026 prokázal DNSKEY/RRSIG na Cloudflare, ale **DS v .cz chyběl**; CZ.NIC 16. 10. v 01:37 ve skenech zobrazil `INSECURE_SCHEDULED` na obou serverech, což ještě nepotvrzuje funkční validaci. Po změně ověřit DS a skutečný řetězec důvěry přes nezávislé validující resolvery. Denní automatický dohled je aktivní. Nezasahovat preventivně do DNSSEC/NSSET/MX ani e-mailového DNS.
-- [ ] **2. Google – indexace.** V Google Search Console už byla ověřena doména, sitemap přijata (`Success`) a odeslána žádost o indexaci. Poslední doložený stav byl `Discovered – currently not indexed`. Sledovat skutečné zaindexování, případné chyby a změny stavu. Žádost o indexaci bez důvodu neopakovat. Denní veřejná kontrola je naplánovaná.
-- [ ] **3. Seznam – indexace.** Seznam Webmaster pro HTTPS byl ověřen. Sledovat první indexované stránky, chyby robota a případná přesměrování v jeho rozhraní; přehled veřejného vyhledávání se kontroluje automaticky. Indexace nové domény může trvat.
+- [x] **DNSSEC – dokončeno 19. 10. 2026.** U FORPSI vytvořen KEYSET `KOBLIHA-CLOUDFLARE-DNSSEC` s KSK (flags 257, protocol 3, algorithm 13, key tag 2371); KEYSET přiřazen k doméně při zachování NSSET `KOBLIHA-CLOUDFLARE`. Následný uživatelský screenshot z Verisign DNSSEC Debugger potvrzuje DS v zóně `.cz` (key tag 2371), správné ověření DNSKEY a RRSIG i zelený řetězec validace. Samostatný test s AD bitem z dalších rekurzivních resolverů nebyl doložen; diagnóza Verisignu prošla.
+- [x] **Google – indexace hlavní stránky potvrzena 19. 10. 2026.** Google Search Console v reportu Performance / Pages pro `https://vodotopokobliha.cz/` eviduje 4 zobrazení a 1 kliknutí; dále původní HTTP variantu se 2 zobrazeními a 1 kliknutím. Jde o doložený interní údaj Search Console, nikoliv samostatnou veřejnou kontrolu. Google e-mailem oznámil počátek sběru impresí od 17. 10. 2026.
+- [x] **Seznam – veřejná indexace potvrzena 19. 10. 2026.** Screenshot veřejných výsledků pro `site:vodotopokobliha.cz` ukazuje hlavní stránku s očekávaným titulkem, popisem i faviconou.
+
+**Automatizace:** Jednorázová připomínka DNSSEC, denní sledování indexace a týdenní stav projektu byly po dokončení vypnuty 19. 10. 2026.
+
+**Další údržba:** Obsahové změny řešit na vyžádání, technicky přes GitHub a Cloudflare Pages; před zveřejněním schválit zadavatelem a po nasazení ověřit na mobilu i desktopu. Rutinní optimalizace výkonu ani úpravy DNS bez konkrétního důvodu nejsou potřeba. Přibližně po měsíci lze vyhodnotit vývoj návštěvnosti v Google Search Console.
 
 ## Potvrzeno zadavatelem
 
